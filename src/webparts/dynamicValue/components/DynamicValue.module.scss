@@ -1,0 +1,17 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+.dynamicValue {
+
+  .label {
+    &.bold {
+      font-weight: bold;
+    }
+    &.above {
+      display: block;
+    }
+    &.beside {
+      margin-right: 6px;
+    }
+  }
+
+}

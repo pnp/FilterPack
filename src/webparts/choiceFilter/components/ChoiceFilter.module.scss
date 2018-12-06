@@ -1,0 +1,14 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+
+.choiceFilter {
+  .propAndButtonBox {
+    display: flex;
+    .mainBox {
+      flex-grow: 1;
+    }
+    .buttonBox {
+      width: inherit;
+      align-self: flex-end;
+    }
+  }
+}

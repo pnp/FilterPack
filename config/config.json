@@ -1,0 +1,65 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "choice-filter-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/choiceFilter/ChoiceFilterWebPart.js",
+          "manifest": "./src/webparts/choiceFilter/ChoiceFilterWebPart.manifest.json"
+        }
+      ]
+    },
+    "dynamic-value-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/dynamicValue/DynamicValueWebPart.js",
+          "manifest": "./src/webparts/dynamicValue/DynamicValueWebPart.manifest.json"
+        }
+      ]
+    },
+    "toggle-filter-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/toggleFilter/ToggleFilterWebPart.js",
+          "manifest": "./src/webparts/toggleFilter/ToggleFilterWebPart.manifest.json"
+        }
+      ]
+    },
+    "text-filter-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/textFilter/TextFilterWebPart.js",
+          "manifest": "./src/webparts/textFilter/TextFilterWebPart.manifest.json"
+        }
+      ]
+    },
+    "people-filter-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/peopleFilter/PeopleFilterWebPart.js",
+          "manifest": "./src/webparts/peopleFilter/PeopleFilterWebPart.manifest.json"
+        }
+      ]
+    },
+    "number-filter-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/numberFilter/NumberFilterWebPart.js",
+          "manifest": "./src/webparts/numberFilter/NumberFilterWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "ChoiceFilterWebPartStrings": "lib/webparts/choiceFilter/loc/{locale}.js",
+    "PropertyControlStrings": "node_modules/@pnp/spfx-property-controls/lib/loc/{locale}.js",
+    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js",
+    "DynamicValueWebPartStrings": "lib/webparts/dynamicValue/loc/{locale}.js",
+    "ToggleFilterWebPartStrings": "lib/webparts/toggleFilter/loc/{locale}.js",
+    "TextFilterWebPartStrings": "lib/webparts/textFilter/loc/{locale}.js",
+    "PeopleFilterWebPartStrings": "lib/webparts/peopleFilter/loc/{locale}.js",
+    "NumberFilterWebPartStrings": "lib/webparts/numberFilter/loc/{locale}.js"
+  }
+}

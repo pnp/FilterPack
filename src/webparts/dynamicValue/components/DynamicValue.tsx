@@ -23,6 +23,8 @@ export interface IDynamicValueProps {
   displayBoolFalse: string;
   displayTemplate: string;
   displayUndefinedValue: string;
+  //displayArrayStyle: string;
+  //displayArrayIndex: number;
 }
 
 export class DynamicValue extends React.Component<IDynamicValueProps, {}> {

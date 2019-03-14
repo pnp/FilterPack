@@ -14,6 +14,7 @@ import {
 import { IDynamicDataSource } from '@microsoft/sp-dynamic-data';
 import { CalloutTriggers } from '@pnp/spfx-property-controls/lib/PropertyFieldHeader';
 import { PropertyFieldTextWithCallout } from '@pnp/spfx-property-controls/lib/PropertyFieldTextWithCallout';
+import { PropertyFieldSpinButton } from '@pnp/spfx-property-controls/lib/PropertyFieldSpinButton';
 
 import * as strings from 'DynamicValueWebPartStrings';
 import { DynamicValue, IDynamicValueProps } from './components/DynamicValue';
@@ -37,6 +38,9 @@ export interface IDynamicValueWebPartProps {
   displayTemplate: string;
   displayUndefined: string;
   displayUndefinedCustom: string;
+  displayArrayStyle: string;
+  displayArrayIndex: number;
+  displayArrayValueType: string;
 }
 
 export default class DynamicValueWebPart extends BaseClientSideWebPart<IDynamicValueWebPartProps> {
@@ -66,7 +70,7 @@ export default class DynamicValueWebPart extends BaseClientSideWebPart<IDynamicV
       if(!source) {
         this._sourceAttemptCount += 1;
         if(this._sourceAttemptCount <=3) {
-          console.log('retrying...');
+          //console.log('retrying...');
           window.setTimeout(this.render,100);
         } else {
           this.context.statusRenderer.renderError(this.domElement, `Unable to connect to the data source (${this.properties.sourceId})`);
@@ -79,6 +83,19 @@ export default class DynamicValueWebPart extends BaseClientSideWebPart<IDynamicV
         value = source.getPropertyValue(this.properties.propertyId);
         if(typeof value !== "undefined" && this.properties.displayType === 'object') {
           value = value[this.properties.displayObjectProperty === 'manuallyspecified' ? this.properties.displayObjectPropertyManual : this.properties.displayObjectProperty];
+        }
+        if(typeof value !== "undefined" && this.properties.displayType === 'array') {
+          switch(this.properties.displayArrayStyle) {
+            case "index":
+              if((value as any).length > this.properties.displayArrayIndex) {
+                value = value[this.properties.displayArrayIndex];
+                if(typeof value !== "undefined" && this.properties.displayArrayValueType === 'object') {
+                  value = value[this.properties.displayObjectProperty === 'manuallyspecified' ? this.properties.displayObjectPropertyManual : this.properties.displayObjectProperty];
+                }
+              } else {
+                value = undefined;
+              }
+          }
         }
       }
       catch(e) {
@@ -123,11 +140,13 @@ export default class DynamicValueWebPart extends BaseClientSideWebPart<IDynamicV
         labelText: this.properties.labelText,
         labelBold: this.properties.labelBold,
         labelPosition: this.properties.labelPosition,
-        displayType: this.properties.displayType === 'object' ? this.properties.displaySubPropertyType : this.properties.displayType,
+        displayType: this.properties.displayType === 'object' || (this.properties.displayType === 'array' && this.properties.displayArrayValueType === 'object') ? this.properties.displaySubPropertyType : this.properties.displayType,
         displayBoolTrue: this.properties.displayBoolTrue,
         displayBoolFalse: this.properties.displayBoolFalse,
         displayTemplate: this.properties.displayTemplate,
-        displayUndefinedValue: this.properties.displayUndefined === 'blank' ? '' : (this.properties.displayUndefined === 'undefined' ? 'undefined' : this.properties.displayUndefinedCustom)
+        displayUndefinedValue: this.properties.displayUndefined === 'blank' ? '' : (this.properties.displayUndefined === 'undefined' ? 'undefined' : this.properties.displayUndefinedCustom),
+        //displayArrayStyle: this.properties.displayArrayStyle,
+        //displayArrayIndex: this.properties.displayArrayIndex,
       }
     );
 
@@ -200,17 +219,58 @@ export default class DynamicValueWebPart extends BaseClientSideWebPart<IDynamicV
         options: [
           {key:'text', text:'Text'},
           {key:'bool', text:'Yes/No'},
+          {key:'array', text:'Array'},
           {key:'object', text:'Object'},
         ]
       })
     ];
 
-    if(this.properties.displayType === 'object') {
+    if(this.properties.displayType === 'array') {
+      displayPaneFields.push(
+        PropertyPaneDropdown('displayArrayStyle', {
+          label: 'Value By',
+          options: [
+            {key:'index', text:'Index'},
+          ],
+          selectedKey: this.properties.displayObjectProperty,
+        })
+      );
+
+      if(this.properties.displayArrayStyle === 'index') {
+        displayPaneFields.push(
+          PropertyFieldSpinButton('displayArrayIndex', {
+            label: 'Index',
+            min: 0,
+            key:'displayArrayIndex',
+            properties: this.properties,
+            onPropertyChange: this.onPropertyPaneFieldChanged,
+          }),
+          PropertyPaneDropdown('displayArrayValueType', {
+            label: 'Display value as',
+            options: [
+              {key:'text', text:'Text'},
+              {key:'bool', text:'Yes/No'},
+              {key:'object', text:'Object'},
+            ]
+          })
+        );
+      }
+    }
+
+    if(this.properties.displayType === 'object' || this.properties.displayArrayValueType === 'object') {
       let keyOptions: IPropertyPaneDropdownOption[] = [];
       const source: IDynamicDataSource = this.context.dynamicDataProvider.tryGetSource(this.properties.sourceId);
       if(source) {
         try {
           let sample: any = source.getPropertyValue(this.properties.propertyId);
+          if(this.properties.displayType === 'array') {
+            switch(this.properties.displayArrayStyle) {
+              case "index":
+                if(sample.length > this.properties.displayArrayIndex) {
+                  sample = sample[this.properties.displayArrayIndex];
+                }
+            }
+          }
           keyOptions = Object.keys(sample).map(key => {
             return {key:key, text:key};
           });

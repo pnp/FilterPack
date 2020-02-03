@@ -2,9 +2,9 @@
   "@microsoft/generator-sharepoint": {
     "isCreatingSolution": false,
     "environment": "spo",
-    "version": "1.7.0-pr.2",
-    "libraryName": "filters",
-    "libraryId": "dfc3a403-b2dc-4319-a1d7-1a31889629b5",
+    "version": "1.10.0",
+    "libraryName": "pnp-filter-pack",
+    "libraryId": "45f43ef0-b667-4dd5-88b9-61effffff224",
     "packageManager": "npm",
     "isDomainIsolated": false,
     "componentType": "webpart"

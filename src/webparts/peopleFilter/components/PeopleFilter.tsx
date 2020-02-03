@@ -51,7 +51,7 @@ export class PeopleFilter extends React.Component<IPeopleFilterProps, {}> {
               };
             }));
           }}
-          principleTypes={this.props.principalTypes} />
+          principalTypes={this.props.principalTypes} />
       </div>
     );
   }

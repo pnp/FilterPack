@@ -1,6 +1,5 @@
 import { DisplayMode } from "@microsoft/sp-core-library";
 import { WebPartTitle } from "@pnp/spfx-controls-react/lib/WebPartTitle";
-import { autobind } from "@uifabric/utilities/lib";
 import { Rating, RatingSize } from "office-ui-fabric-react/lib/Rating";
 import { Slider } from "office-ui-fabric-react/lib/Slider";
 import { SpinButton } from "office-ui-fabric-react/lib/SpinButton";
@@ -69,13 +68,12 @@ export class NumberFilter extends React.Component<INumberFilterProps, {}> {
     );
   }
 
-  @autobind
-  private onSpinValidate(rawValue: string): string {
+  private onSpinValidate = (rawValue: string): string => {
     let numValue = this.extractNumValue(rawValue);
     return this.validateNumber(numValue);
   }
 
-  private validateNumber(numValue: number): string {
+  private validateNumber = (numValue: number): string => {
     if(numValue > this.props.max) {
       numValue = this.props.max;
     }
@@ -91,19 +89,17 @@ export class NumberFilter extends React.Component<INumberFilterProps, {}> {
     return this.formatValueString(numValue);
   }
 
-  @autobind
-  private onSpinDecrement(rawValue: string) : string {
+  private onSpinDecrement = (rawValue: string) : string => {
     let numValue = this.extractNumValue(rawValue);
     return this.validateNumber(numValue - this.props.step);
   }
 
-  @autobind
-  private onSpinIncrement(rawValue: string): string {
+  private onSpinIncrement = (rawValue: string): string => {
     let numValue = this.extractNumValue(rawValue);
     return this.validateNumber(numValue + this.props.step);
   }
 
-  private extractNumValue(rawValue: string): number {
+  private extractNumValue = (rawValue: string): number => {
     let numValue: number;
     let baseValue: string = this.removeSuffix(rawValue);
 
@@ -116,7 +112,7 @@ export class NumberFilter extends React.Component<INumberFilterProps, {}> {
     return numValue;
   }
 
-  private hasSuffix(rawValue: string): boolean {
+  private hasSuffix = (rawValue: string): boolean => {
     if(!this.props.suffix) {
       return false;
     }
@@ -125,7 +121,7 @@ export class NumberFilter extends React.Component<INumberFilterProps, {}> {
     return subString === this.props.suffix;
   }
 
-  private removeSuffix(rawValue: string): string {
+  private removeSuffix= (rawValue: string): string => {
     if(!this.hasSuffix(rawValue)) {
       return rawValue;
     }

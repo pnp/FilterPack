@@ -20,7 +20,7 @@ import { PropertyFieldListPicker, PropertyFieldListPickerOrderBy } from '@pnp/sp
 
 import * as strings from 'ChoiceFilterWebPartStrings';
 import { IChoiceFilterProps, ChoiceFilter } from './components/ChoiceFilter';
-import { sp } from "@pnp/sp";
+import { sp } from "@pnp/sp/presets/all";
 import {IListInfo, IViewInfo, IFieldInfo} from './IListInfo';
 import { uniq } from '@microsoft/sp-lodash-subset';
 

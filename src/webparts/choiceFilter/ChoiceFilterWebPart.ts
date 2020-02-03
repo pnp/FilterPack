@@ -40,6 +40,7 @@ export interface IChoiceFilterWebPartProps {
   cascadingFilters: any[];
   syncQS: boolean;
   QSkey: string;
+  sendAsArray: boolean;
 }
 
 export default class ChoiceFilterWebPart extends BaseClientSideWebPart<IChoiceFilterWebPartProps> implements IDynamicDataCallables {
@@ -328,9 +329,9 @@ export default class ChoiceFilterWebPart extends BaseClientSideWebPart<IChoiceFi
   public getPropertyValue(propertyId: string): any {
     switch(propertyId) {
       case 'filterKey':
-        return this._selectedKey;
+        return this.properties.sendAsArray ? [{value:this._selectedKey}] : this._selectedKey;
       case 'filterText':
-        return this._selectedText;
+        return this.properties.sendAsArray ? [{value:this._selectedText}] : this._selectedText;
     }
     throw new Error('Bad property id');
   }
@@ -554,6 +555,11 @@ export default class ChoiceFilterWebPart extends BaseClientSideWebPart<IChoiceFi
         })
       );
     }
+    qsPaneFields.push(
+      PropertyPaneToggle('sendAsArray',{
+        label: 'Send as array'
+      })
+    );
 
     groups.push(
       {

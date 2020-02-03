@@ -30,7 +30,10 @@
       "displayBoolFalse": "No",
       "displayTemplate": "[VALUE]",
       "displayUndefined": "blank",
-      "displayUndefinedCustom": "?"
+      "displayUndefinedCustom": "?",
+      "displayArrayStyle": "index",
+      "displayArrayIndex": 0,
+      "displayArrayValueType": "text"
     }
   }]
 }

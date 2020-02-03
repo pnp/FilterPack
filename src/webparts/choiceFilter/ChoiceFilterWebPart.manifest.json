@@ -31,7 +31,8 @@
       "allowNone": false,
       "cascadingFilters": [],
       "syncQS": false,
-      "QSkey": "chF"
+      "QSkey": "chF",
+      "sendAsArray": false
     }
   }]
 }

@@ -1,15 +1,8 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Version, Log } from '@microsoft/sp-core-library';
-import {
-  BaseClientSideWebPart,
-  IPropertyPaneConfiguration,
-  PropertyPaneTextField,
-  IPropertyPaneDropdownOption,
-  PropertyPaneDropdown,
-  PropertyPaneToggle,
-  PropertyPaneDynamicField
-} from '@microsoft/sp-webpart-base';
+import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
+import { IPropertyPaneConfiguration, PropertyPaneTextField, IPropertyPaneDropdownOption, PropertyPaneDropdown, PropertyPaneToggle, PropertyPaneDynamicField } from "@microsoft/sp-property-pane";
 
 import { IDynamicDataSource } from '@microsoft/sp-dynamic-data';
 import { CalloutTriggers } from '@pnp/spfx-property-controls/lib/PropertyFieldHeader';

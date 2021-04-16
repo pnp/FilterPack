@@ -1,0 +1,119 @@
+{
+  "id": "f1e4958a-b346-45e5-b23b-fef92eded56c",
+  "alias": "ChoiceFilterWebPart",
+  "componentType": "WebPart",
+  "version": "0.0.1",
+  "manifestVersion": 2,
+  "requiresCustomScript": false,
+  "supportedHosts": [
+    "SharePointWebPart"
+  ],
+  "preconfiguredEntries": [
+    {
+      "groupId": "5c03119e-3074-46fd-976b-c60198311f70",
+      "group": {
+        "default": "Other"
+      },
+      "title": {
+        "default": "Choice Filter"
+      },
+      "description": {
+        "default": "choiceFilter description"
+      },
+      "officeFabricIconFontName": "TestPlan",
+      "properties": {
+        "labelShow": false,
+        "labelText": "Choice Filter",
+        "choiceType": "custom",
+        "customChoices": [
+          {
+            "key": 1,
+            "text": "Choice 1",
+            "filterValue": ""
+          },
+          {
+            "key": 2,
+            "text": "Choice 2",
+            "filterValue": ""
+          },
+          {
+            "key": 3,
+            "text": "Choice 3",
+            "filterValue": ""
+          }
+        ],
+        "allowNone": false,
+        "cascadingFilters": [],
+        "syncQS": false,
+        "QSkey": "chF",
+        "sendAsArray": false
+      }
+    }
+  ],
+  "loaderConfig": {
+    "internalModuleBaseUrls": [
+      "<!-- PATH TO CDN -->"
+    ],
+    "entryModuleId": "choice-filter-web-part",
+    "scriptResources": {
+      "choice-filter-web-part": {
+        "type": "path",
+        "path": "choice-filter-web-part_7630f9ebacb8f8b7a06b.js"
+      },
+      "tslib": {
+        "type": "component",
+        "id": "01c4df03-e775-48cb-aa14-171ee5199a15",
+        "version": "1.8.1"
+      },
+      "@microsoft/sp-property-pane": {
+        "type": "component",
+        "id": "f9e737b7-f0df-4597-ba8c-3060f82380db",
+        "version": "1.12.0"
+      },
+      "@microsoft/sp-lodash-subset": {
+        "type": "component",
+        "id": "73e1dc6c-8441-42cc-ad47-4bd3659f8a3a",
+        "version": "1.12.0"
+      },
+      "ControlStrings": {
+        "type": "localizedPath",
+        "paths": {
+          "en-US": "ControlStrings_en-us_9d5c960645bbbbf6af0dced2dc36c079.js"
+        },
+        "defaultPath": "ControlStrings_en-us_9d5c960645bbbbf6af0dced2dc36c079.js"
+      },
+      "@microsoft/sp-core-library": {
+        "type": "component",
+        "id": "7263c7d0-1d6a-45ec-8d85-d4d1d234171b",
+        "version": "1.12.0"
+      },
+      "@microsoft/sp-webpart-base": {
+        "type": "component",
+        "id": "974a7777-0990-4136-8fa6-95d80114c2e0",
+        "version": "1.12.0"
+      },
+      "react": {
+        "type": "component",
+        "id": "0d910c1c-13b9-4e1c-9aa4-b008c5e42d7d",
+        "version": "16.9.0"
+      },
+      "react-dom": {
+        "type": "component",
+        "id": "aa0a46ec-1505-43cd-a44a-93f3a5aa460a",
+        "version": "16.9.0"
+      },
+      "@microsoft/sp-http": {
+        "type": "component",
+        "id": "c07208f0-ea3b-4c1a-9965-ac1b825211a6",
+        "version": "1.12.0"
+      },
+      "PropertyControlStrings": {
+        "type": "localizedPath",
+        "paths": {
+          "en-US": "PropertyControlStrings_en-us_2f586750d8bebe7789eee4c6df8d49f6.js"
+        },
+        "defaultPath": "PropertyControlStrings_en-us_2f586750d8bebe7789eee4c6df8d49f6.js"
+      }
+    }
+  }
+}

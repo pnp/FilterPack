@@ -25,7 +25,7 @@ export class TextFilter extends React.Component<ITextFilterProps, {}> {
           updateProperty={this.props.updateTitle}/>
         <TextField
           value={this.props.value}
-          onChanged={this.props.onChange}
+          onChange={(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => this.props.onChange(newValue)}
           label={this.props.labelShow ? this.props.labelText : undefined}
           placeholder={this.props.placeholder}/>
       </div>
